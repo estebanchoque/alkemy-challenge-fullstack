@@ -2,7 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const routes = require("./routes/index");
-const logger = require("./middlewares/loggerMiddleware");
+const errorHandler = require("./middlewares/errorHandlerMiddleware");
 
 require("./db");
 
@@ -26,7 +26,6 @@ server.use((req, res, next) => {
 
 server.use("/", routes);
 
-// Error catching endware
-server.use(logger);
+server.use(errorHandler);
 
 module.exports = server;
